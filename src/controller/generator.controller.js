@@ -9,6 +9,7 @@ exports.store = async (req, res) => {
   const { nik } = req.body
   const nikLists = nik.split(' ')
   const pathFile = fs.readdirSync('./public/image')
+  console.log(pathFile)
   if (pathFile.length !== 0) {
     pathFile.forEach((item) => fs.unlinkSync(`./public/image/${item}`))
   }
