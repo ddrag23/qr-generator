@@ -5,8 +5,7 @@ const AdmZip = require('adm-zip')
 exports.index = (_, res) => {
   res.render('index')
 }
-exports.store = (req, res) => {
-  console.log(req.body)
+exports.store = async (req, res) => {
   const { nik } = req.body
   const nikLists = nik.split(' ')
   const pathFile = fs.readdirSync('./public/image')
@@ -18,7 +17,10 @@ exports.store = (req, res) => {
       width: 500,
     })
   })
-  res.json({ success: 'Berhasil generate qr-code. silahkan klik download' })
+  res.json({
+    success: 'Berhasil generate qr-code. silahkan klik download',
+    qrcodes: nikLists,
+  })
 }
 exports.downloaded = (_, res) => {
   const pathFile = fs.readdirSync('./public/image')
